@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dope Visualizer</title>
+  <title>Data Visualizer</title>
 
   <!-- Google Fonts -->
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto:400,700|Lato:300,400,700|Oswald:400,700' rel='stylesheet' type='text/css'>
@@ -23,6 +23,42 @@
 </head>
 
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Data Visualizer</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-btn">
+              <span id="file_container" class="btn btn-primary btn-file">
+                  Import CSV <input id="file" type="file">
+              </span>
+          </span>
+          <input id="csv_file_name" type="text" class="form-control" readonly>
+        </div>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="csv_content" tabindex="-1" role="dialog" aria-labelledby="modal_title">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal_title"></h4>
+        <div class="notice">Data generate with <a href="https://www.mockaroo.com/" target="_blank">mockaroo</a></div>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+    </div>
+  </div>
+</div>
+  
 
   <!-- jQuery -->
   <script src="js/jquery.min.js"></script>
