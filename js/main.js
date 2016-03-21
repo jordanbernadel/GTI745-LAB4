@@ -11,6 +11,7 @@ window.main = {
                             .removeClass("btn-primary")
                             .addClass("btn-success");
         $("#modal_title").html(label+" content");
+        $(".tools").removeClass("hide").css("opacity", 1);
 
         d3.csv(label, function(data) {
             dataset = data.map(function(d) { return [   +d["ID"], 
@@ -18,9 +19,12 @@ window.main = {
                                                         d["Nom"],
                                                         d["Sexe"],
                                                         +d["Age"],
-                                                        d["CouleurVoiture"]
+                                                        +d["VitesseMoyenne"],
+                                                        d["CouleurVoiture"],
+                                                        d["MarqueVoiture"]
                                                     ];});
-            //console.log(data);
+
+            console.log(data);
             d3.select(".modal-body")
                 .selectAll("div")
                 .data(dataset)
@@ -33,14 +37,18 @@ window.main = {
                         nom             = d[2],
                         sexe            = d[3],
                         age             = d[4],
-                        couleur_voiture = d[5];
+                        vitesse_moyenne = d[5],
+                        couleur_voiture = d[6],
+                        marque_voiture  = d[7];
 
-                    var line =  "<div class='col-md-2'>"+id+"</div> " +
-                                "<div class='col-md-2'>"+prenom+"</div> " +
-                                "<div class='col-md-2'>"+nom+"</div> " +
-                                "<div class='col-md-2'>"+sexe+"</div> " +
-                                "<div class='col-md-2'>"+age+"</div> " +
-                                "<div class='col-md-2 car_color' style='background-color:"+couleur_voiture+";'>"+couleur_voiture+"</div>";
+                    var line =  "<div class='col-md-1 center'>"+id+"</div> " +
+                                "<div class='col-md-2 center'>"+prenom+"</div> " +
+                                "<div class='col-md-2 center'>"+nom+"</div> " +
+                                "<div class='col-md-1 center'>"+sexe+"</div> " +
+                                "<div class='col-md-1 center'>"+age+"</div> " +
+                                "<div class='col-md-1 center'>"+vitesse_moyenne+"</div>"+
+                                "<div class='col-md-2 center'>"+marque_voiture+"</div>"+
+                                "<div class='col-md-2 center car_color' style='background-color:"+couleur_voiture+";'>"+couleur_voiture+"</div>";
                     return line; 
                 });
             $("#file_container.btn-success").bind("click", main.showData);

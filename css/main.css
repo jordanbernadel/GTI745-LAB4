@@ -8,6 +8,10 @@ h1{
     margin: 25px;
 }
 
+.center{
+    text-align: center;
+}
+
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -38,9 +42,23 @@ h1{
     text-align: center;
 }
 
-.modal-body div.row{
+.modal-header {
+    padding-bottom: 0;
+}
+
+.modal-body {
+    padding-top: 0;
+}
+
+.modal-body div.row,
+#data-header{
     margin: 5px;
     padding: 5px;
+}
+
+#data-header{
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 
 .modal-body div.row:nth-child(odd){
@@ -58,4 +76,45 @@ h1{
 .notice{
     text-align: center;
     font-size: 12px;
+}
+
+#tools{
+    opacity: 0;
+    text-transform: 0.9s
+}
+
+.tools-icon{
+    font-size: 60px;
+    margin-top: 50px;
+    cursor: pointer;
+    transition:0.3s;
+}
+
+.tools-icon:hover{
+    font-size: 80px;
+    margin-top: 30px;
+}
+
+.fa-bar-chart:hover{
+    color:#3498db;
+}
+
+.fa-tree:hover{
+    color:#2ecc71;
+}
+
+.fa-cube:hover{
+    color:#e74c3c;
+}
+
+.fa-smile-o:hover{
+    color:#f1c40f;
+}
+
+.fa-bars:hover{
+    color:#9b59b6;
+}
+
+.fa-cloud:hover{
+    color:#ecf0f1;
 }
