@@ -1,6 +1,7 @@
 window.main = {
     init : function() {
         $(".btn-file :file").bind("change", this.fileOnChange);
+        $(".fa-bar-chart").bind("click", this.showBarChart)
     },
 
     fileOnChange : function(){
@@ -55,7 +56,44 @@ window.main = {
                     return line; 
                 });
             $("#file_container.btn-success").bind("click", main.showData);
+
+            // Bar chart
+
+            var chart = d3.select("#bar_chart");
+
+            var barWidth = 50;
+
+            var car_brands = d3.map(dataset, function(d){return d[8];}).keys();
+
+            var car_brands_count = Array.apply(null, Array(car_brands.length)).map(Number.prototype.valueOf,0);;
+
+            for(var i = 0; i < dataset.length; i++){
+                for(var j = 0; j < car_brands.length; j++){
+                    if(dataset[i][8] == car_brands[j]){
+                        car_brands_count[j] += 1;
+                    }
+                }
+            }
+
+            var bar = chart.selectAll("div")
+                .data(car_brands)
+                .enter()
+                .append("div")
+                .attr("class", "bar")
+                .attr("style",function(d, i){ return "height:"+car_brands_count[i]*4+"px";})
+                .append("div")
+                .html(function(d){ return d;});
+
+            var left_counter = 390;
+            $( "#bar_chart div" ).each(function() {                
+                $(this).css("left", left_counter);
+                left_counter += 26;
+            });
         });
+    },
+
+    showBarChart : function(){
+        $("#bar_chart_content").css("opacity", 1);
     },
 
     showData : function(){

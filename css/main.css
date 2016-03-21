@@ -91,11 +91,11 @@ h1{
 }
 
 .tools-icon:hover{
-    font-size: 80px;
+    /*font-size: 80px;*/
 }
 
 .fa-bar-chart:hover{
-    color:#3498db;
+    color:#e67e22;
 }
 
 .fa-tree:hover{
@@ -115,13 +115,56 @@ h1{
 }
 
 .fa-cloud:hover{
-    color:#ecf0f1;
+    color:#3498db;
 }
 
-#bart_chart{
+#bar_chart_content{
+    opacity: 0;
+    transition:0.9s;
+}
 
+#bar_chart{
+    margin-top:20px;
+    height: 300px;
+    width: 1210px;
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+    padding-left: 15px;
+}
+
+#bar_chart .bar{
+    width: 50px;
+    background: #000;
+    position: absolute;
+    bottom: 403px;
+    cursor: pointer;
+    transition:0.1s;
+}
+
+#bar_chart .bar:hover{
+    background-color: #e67e22;
+}
+
+#bar_chart .bar div{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 10px;
+    color: #FFF;
 }
 
 .modal-dialog {
     width: 1000px;
+}
+
+#bar_chart_x_axis{
+    float: right;
+    padding: 10px;
+}
+
+#bar_chart_y_axis{
+    transform: rotate( -90deg);
+    transform-origin: left bottom 0;
+    top: 375px;
+    position: absolute;
+    padding: 10px;
 }
