@@ -78,21 +78,20 @@ h1{
     font-size: 12px;
 }
 
-#tools{
+.tools{
+    margin-top:50px;
     opacity: 0;
     text-transform: 0.9s
 }
 
 .tools-icon{
     font-size: 60px;
-    margin-top: 50px;
     cursor: pointer;
     transition:0.3s;
 }
 
 .tools-icon:hover{
     font-size: 80px;
-    margin-top: 30px;
 }
 
 .fa-bar-chart:hover{
@@ -117,4 +116,12 @@ h1{
 
 .fa-cloud:hover{
     color:#ecf0f1;
+}
+
+#bart_chart{
+
+}
+
+.modal-dialog {
+    width: 1000px;
 }
