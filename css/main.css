@@ -56,9 +56,14 @@ h1{
     padding: 5px;
 }
 
-#data-header{
+#data-header {
     padding-bottom: 0;
     margin-bottom: 0;
+    background: #000;
+    padding: 5px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    color: #FFF;
 }
 
 .modal-body div.row:nth-child(odd){
@@ -78,25 +83,25 @@ h1{
     font-size: 12px;
 }
 
-#tools{
+.tools{
+    margin-top:50px;
     opacity: 0;
     text-transform: 0.9s
 }
 
 .tools-icon{
     font-size: 60px;
-    margin-top: 50px;
     cursor: pointer;
     transition:0.3s;
 }
 
 .tools-icon:hover{
-    font-size: 80px;
-    margin-top: 30px;
+    /*font-size: 80px;*/
 }
 
-.fa-bar-chart:hover{
-    color:#3498db;
+.fa-bar-chart:hover,
+.fa-bar-chart.active{
+    color:#e67e22;
 }
 
 .fa-tree:hover{
@@ -116,5 +121,126 @@ h1{
 }
 
 .fa-cloud:hover{
-    color:#ecf0f1;
+    color:#3498db;
+}
+
+#bar_chart_title{
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px dashed #000;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+#bar_chart_content{
+    opacity: 0;
+    transition:0.9s;
+}
+
+#bar_chart{
+    margin-top:20px;
+    height: 300px;
+    width: 1210px;
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+    padding-left: 15px;
+}
+
+#bar_chart .bar{
+    width: 50px;
+    background: #000;
+    position: absolute;
+    bottom: 328px;
+    cursor: pointer;
+    transition:0.9s;
+}
+
+#bar_chart .bar.male {
+    background-color: #2980b9;
+}
+
+#bar_chart .bar.female {
+    background-color: #c0392b;
+}
+
+#bar_chart .bar.init{
+    height:5px!important;
+}
+
+#bar_chart .bar.male:hover{
+    background-color: #3498db;
+}
+
+#bar_chart .bar.female:hover{
+    background-color: #e74c3c;
+}
+
+#bar_chart .bar div{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 10px;
+    opacity: 0;
+    transition:0.9s;
+}
+
+#bar_chart .bar.male div{
+    color: #3498db;
+}
+
+#bar_chart .bar.female div{
+    color: #e74c3c;
+}
+
+#bar_chart_x_axis{
+    margin-top: 10px;
+    position: relative;
+    margin-left: 120px;
+}
+
+#bar_chart_y_axis{
+    transform: rotate( -90deg);
+    transform-origin: left bottom 0;
+    top: 435px;
+    position: absolute;
+    padding: 10px;
+}
+
+#bar_chart_x_axis div:first-child{
+    padding-left: 0px;
+}
+
+#bar_chart_x_axis div{
+    display: inline-block;
+    padding-left: 135px;
+}
+
+#x_axis_domain_name{
+    float: right;
+    margin-top: -20px;
+}
+
+#bar_chart_legend{
+    text-align: center;
+}
+
+#bar_chart_legend div{
+    display: inline-block;
+    margin-top: 15px;
+    padding: 5px;
+    border-radius: 8px;
+}
+
+#bar_chart_legend_var_1{
+    background-color: #2980B9;
+    color: #FFF;
+}
+
+#bar_chart_legend_var_2{
+    background-color: #c0392b;
+    color: #FFF;
 }
