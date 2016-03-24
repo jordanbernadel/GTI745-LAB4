@@ -101,20 +101,7 @@ window.main = {
                 .append("div")
                 .html(function(d, i){ return continent_female_count[i];});
 
-
-            var left_male_counter = 450;
-            var gap = 150;
-            $( "#bar_chart div.male" ).each(function() {                
-                $(this).css("left", left_male_counter);
-                left_male_counter += gap;
-            });
-
-            left_male_counter = 450;
-            var left_female_counter = left_male_counter + barWidth + 1;
-            $( "#bar_chart div.female" ).each(function() {                
-                $(this).css("left", left_female_counter);
-                left_female_counter += gap;
-            });
+            main.adapt_bar_chart();
 
             var bar_x_axis = d3.select("#bar_chart_x_axis");
 
@@ -156,7 +143,35 @@ window.main = {
         $(this).children().css("font-size", 10);
         $(this).children().css("margin-top", 10);
     },
+
+    adapt_bar_chart : function(){
+        var bar_chart_div = $('#bar_chart');
+        var bottom = $(window).height() - bar_chart_div.offset().top - bar_chart_div.height();
+        $("#bar_chart .bar").css("bottom", bottom);
+
+        var barWidth = 50;
+        var barGap = barWidth + 1;
+
+        var left = bar_chart_div.offset().left + barGap;
+
+        $("#bar_chart_x_axis").css("left", left + barWidth - 5);
+
+        var left_male_counter = left;
+        var gap = 150;
+        $( "#bar_chart div.male" ).each(function() {                
+            $(this).css("left", left_male_counter);
+            left_male_counter += gap;
+        });
+
+        var left_female_counter = left + barGap;
+        $( "#bar_chart div.female" ).each(function() {                
+            $(this).css("left", left_female_counter);
+            left_female_counter += gap;
+        });
+    },
 };
+
+$(window).on('resize', main.adapt_bar_chart);
 
 $(document).ready(function() {
     window.main.init();

@@ -155,7 +155,6 @@ h1{
     width: 50px;
     background: #000;
     position: absolute;
-    bottom: 328px;
     cursor: pointer;
     transition:0.9s;
 }
@@ -198,8 +197,7 @@ h1{
 
 #bar_chart_x_axis{
     margin-top: 10px;
-    position: relative;
-    margin-left: 120px;
+    position: absolute;
 }
 
 #bar_chart_y_axis{
@@ -221,7 +219,7 @@ h1{
 
 #x_axis_domain_name{
     float: right;
-    margin-top: -20px;
+    margin-top: 10px;
 }
 
 #bar_chart_legend{
@@ -230,8 +228,8 @@ h1{
 
 #bar_chart_legend div{
     display: inline-block;
-    margin-top: 15px;
-    padding: 5px;
+    margin-top: 40px;
+    padding: 10px;
     border-radius: 8px;
 }
 
