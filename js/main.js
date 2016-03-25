@@ -3,6 +3,7 @@ window.main = {
         $(".btn-file :file").bind("change", this.fileOnChange);
         $(".fa-bar-chart").bind("click", this.showBarChart);
         $(".fa-tree").bind("click", this.showTreeDiagram);
+        $(".fa-cube").bind("click", this.show3dDiagram);
     },
 
     fileOnChange : function(){
@@ -237,22 +238,22 @@ window.main = {
                 .append("div")
                 .attr("class", "gender_group")
                 .html(function(d, i){ return "<div>"+getFavoriteTransportForContinentByGender(i, "M")+"</div><div>"+getFavoriteTransportForContinentByGender(i, "F")+"</div>";});
+
+
+            // 3D chart
         });
     },
 
     showBarChart : function(){
         if($("#bar_chart_content").css("opacity") == 0){
-            if($("#bar_chart_content").css("display") == "none")
-                $("#bar_chart_content").css("display", "inherit");
-
-            $("#bar_chart_content").css("opacity", 1);
-            
+            $("#bar_chart_content").css("display","inherit");
+            $("#bar_chart_content").animate({opacity: 1}, 500);
             $(".fa-bar-chart").addClass("active");
             $("#bar_chart .bar").removeClass('init');
         }else{
-            if($("#tree_diagram_content").css("opacity") == 1)
-                $("#bar_chart_content").css("display", "none");
-            $("#bar_chart_content").css("opacity", 0);
+            $("#bar_chart_content").animate({opacity: 0}, 500, function(){
+                $("#bar_chart_content").css("display","none");
+            });
             $(".fa-bar-chart").removeClass("active");
             $("#bar_chart .bar").addClass('init');
         }
@@ -261,14 +262,28 @@ window.main = {
 
     showTreeDiagram : function(){
         if($("#tree_diagram_content").css("opacity") == 0){
-            if($("#bar_chart_content").css("opacity") == 0)
-                $("#bar_chart_content").css("display", "none");
-            
-            $("#tree_diagram_content").css("opacity", 1);
+            $("#tree_diagram_content").css("display","inherit");
+            $("#tree_diagram_content").animate({opacity: 1}, 500);
             $(".fa-tree").addClass("active");
         }else{
-            $("#tree_diagram_content").css("opacity", 0);
+            $("#tree_diagram_content").animate({opacity: 0}, 500, function(){
+                $("#tree_diagram_content").css("display","none");
+            });
             $(".fa-tree").removeClass("active");
+        }
+        
+    },
+
+    show3dDiagram : function(){
+        if($("#3d_diagram_content").css("opacity") == 0){            
+            $("#3d_diagram_content").css("display","inherit");
+            $("#3d_diagram_content").animate({opacity: 1}, 500);
+            $(".fa-cube").addClass("active");
+        }else{
+            $("#3d_diagram_content").animate({opacity: 0}, 500, function(){
+                $("#tree_diagram_content").css("display","none");
+            });
+            $(".fa-cube").removeClass("active");
         }
         
     },

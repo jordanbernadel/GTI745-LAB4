@@ -125,8 +125,7 @@ h1{
     color:#3498db;
 }
 
-#bar_chart_title,
-#tree_diagram_title{
+.chart_title{
     text-align: center;
     text-transform: uppercase;
     font-size: 16px;
@@ -139,11 +138,12 @@ h1{
     margin-top: 30px;
 }
 
-#bar_chart_content,
-#tree_diagram_content{
+.chart_content{
     opacity: 0;
     transition:0.9s;
 }
+
+/* Bar diagram */
 
 #bar_chart{
     margin-top:20px;
@@ -246,6 +246,8 @@ h1{
     color: #FFF;
 }
 
+/* Tree diagram */
+
 #tree_diagram{
     margin-top:30px;
 }
@@ -259,7 +261,6 @@ h1{
 .gender_group:first-child div:first-child{
     margin-top: 30px;
 }
-
 
 #tree_diagram_layer_1 div{
     display: table;
