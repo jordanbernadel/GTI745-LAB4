@@ -2,6 +2,7 @@ window.main = {
     init : function() {
         $(".btn-file :file").bind("change", this.fileOnChange);
         $(".fa-bar-chart").bind("click", this.showBarChart);
+        $(".fa-tree").bind("click", this.showTreeDiagram);
     },
 
     fileOnChange : function(){
@@ -63,20 +64,113 @@ window.main = {
 
             var continent_array = d3.map(dataset, function(d){return d[3];}).keys();
 
-            var continent_male_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var transport_array = d3.map(dataset, function(d){return d[6];}).keys();
 
+            var continent_male_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
             var continent_female_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+
+            var continent_male_voiture_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_male_train_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_male_plane_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_male_bike_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_male_subway_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_male_boat_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+
+            var continent_female_voiture_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_female_train_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_female_plane_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_female_bike_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_female_subway_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_female_boat_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
 
             for(var i = 0; i < dataset.length; i++){
                 for(var j = 0; j < continent_array.length; j++){
                     if(dataset[i][3] == continent_array[j]){
                         if(dataset[i][1] == "M"){
                             continent_male_count[j] += 1;
+                            if(dataset[i][6] == "Voiture"){
+                                continent_male_voiture_count[j] += 1;
+                            }else if(dataset[i][6] == "Train"){
+                                continent_male_train_count[j] += 1;
+                            }else if(dataset[i][6] == "Avion"){
+                                continent_male_plane_count[j] += 1;
+                            }else if(dataset[i][6] == "Metro"){
+                                continent_male_subway_count[j] += 1;
+                            }else if(dataset[i][6] == "Velo"){
+                                continent_male_bike_count[j] += 1;
+                            }else if(dataset[i][6] == "Bateau"){
+                                continent_male_boat_count[j] += 1;
+                            }
                         }else if(dataset[i][1] == "F"){
                             continent_female_count[j] += 1;
+                            if(dataset[i][6] == "Voiture"){
+                                continent_female_voiture_count[j] += 1;
+                            }else if(dataset[i][6] == "Train"){
+                                continent_female_train_count[j] += 1;
+                            }else if(dataset[i][6] == "Avion"){
+                                continent_female_plane_count[j] += 1;
+                            }else if(dataset[i][6] == "Metro"){
+                                continent_female_subway_count[j] += 1;
+                            }else if(dataset[i][6] == "Velo"){
+                                continent_female_bike_count[j] += 1;
+                            }else if(dataset[i][6] == "Bateau"){
+                                continent_female_boat_count[j] += 1;
+                            }
                         }
                     }
                 }
+            }
+
+            function getFavoriteTransportForContinentByGender(i, gender){
+                var temp = [];
+                var index;
+
+                if(gender == "M"){
+                    temp = [
+                        continent_male_voiture_count[i],
+                        continent_male_train_count[i],
+                        continent_male_plane_count[i],
+                        continent_male_subway_count[i],
+                        continent_male_bike_count[i],
+                        continent_male_boat_count[i]
+                    ];    
+                }else if(gender == "F"){
+                    temp = [
+                        continent_female_voiture_count[i],
+                        continent_female_train_count[i],
+                        continent_female_plane_count[i],
+                        continent_female_subway_count[i],
+                        continent_female_bike_count[i],
+                        continent_female_boat_count[i]
+                    ];
+                }
+
+                index = temp.indexOf(Math.max.apply(Math,temp));
+
+                var fav_transport = "";
+
+                switch(index) {
+                    case 0:
+                        fav_transport = "Voiture";
+                        break;
+                    case 1:
+                        fav_transport = "Train";
+                        break;
+                    case 2:
+                        fav_transport = "Avion";
+                        break;
+                    case 3:
+                        fav_transport = "Metro";
+                        break;
+                    case 4:
+                        fav_transport = "Velo";
+                        break;
+                    case 5:
+                        fav_transport = "Bateau";
+                        break;
+                }
+
+                return fav_transport;
             }
 
             var bar_male = chart_var_1.selectAll("div")
@@ -111,19 +205,70 @@ window.main = {
                 .append("div")
                 .html(function(d){ return d;});
 
-            
+            // tree diagram
+            var tree_diagram_layer_1 = d3.select("#tree_diagram_layer_1");
+            var tree_diagram_layer_2 = d3.select("#tree_diagram_layer_2");
+            var tree_diagram_layer_3 = d3.select("#tree_diagram_layer_3");
+            var tree_diagram_layer_4 = d3.select("#tree_diagram_layer_4");
+
+            var tree_diagram_layer_1_data = tree_diagram_layer_1.selectAll("div")
+                .data(continent_array)
+                .enter()
+                .append("div")
+                .html(function(d){ return d;});
+
+            var tree_diagram_layer_2_data = tree_diagram_layer_2.selectAll("div")
+                .data(continent_array)
+                .enter()
+                .append("div")
+                .attr("class", "gender_group")
+                .html(function(d){ return "<div>H</div><div>F</div>";});
+
+            var tree_diagram_layer_3_data = tree_diagram_layer_3.selectAll("div")
+                .data(continent_array)
+                .enter()
+                .append("div")
+                .attr("class", "gender_group")
+                .html(function(d, i){ return "<div>"+continent_male_count[i]+"</div><div>"+continent_female_count[i]+"</div>";});
+
+                var tree_diagram_layer_4_data = tree_diagram_layer_4.selectAll("div")
+                .data(continent_array)
+                .enter()
+                .append("div")
+                .attr("class", "gender_group")
+                .html(function(d, i){ return "<div>"+getFavoriteTransportForContinentByGender(i, "M")+"</div><div>"+getFavoriteTransportForContinentByGender(i, "F")+"</div>";});
         });
     },
 
     showBarChart : function(){
         if($("#bar_chart_content").css("opacity") == 0){
+            if($("#bar_chart_content").css("display") == "none")
+                $("#bar_chart_content").css("display", "inherit");
+
             $("#bar_chart_content").css("opacity", 1);
+            
             $(".fa-bar-chart").addClass("active");
             $("#bar_chart .bar").removeClass('init');
         }else{
+            if($("#tree_diagram_content").css("opacity") == 1)
+                $("#bar_chart_content").css("display", "none");
             $("#bar_chart_content").css("opacity", 0);
             $(".fa-bar-chart").removeClass("active");
             $("#bar_chart .bar").addClass('init');
+        }
+        
+    },
+
+    showTreeDiagram : function(){
+        if($("#tree_diagram_content").css("opacity") == 0){
+            if($("#bar_chart_content").css("opacity") == 0)
+                $("#bar_chart_content").css("display", "none");
+            
+            $("#tree_diagram_content").css("opacity", 1);
+            $(".fa-tree").addClass("active");
+        }else{
+            $("#tree_diagram_content").css("opacity", 0);
+            $(".fa-tree").removeClass("active");
         }
         
     },

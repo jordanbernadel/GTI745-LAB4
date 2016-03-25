@@ -104,7 +104,8 @@ h1{
     color:#e67e22;
 }
 
-.fa-tree:hover{
+.fa-tree:hover,
+.fa-tree.active{
     color:#2ecc71;
 }
 
@@ -124,7 +125,8 @@ h1{
     color:#3498db;
 }
 
-#bar_chart_title{
+#bar_chart_title,
+#tree_diagram_title{
     text-align: center;
     text-transform: uppercase;
     font-size: 16px;
@@ -137,7 +139,8 @@ h1{
     margin-top: 30px;
 }
 
-#bar_chart_content{
+#bar_chart_content,
+#tree_diagram_content{
     opacity: 0;
     transition:0.9s;
 }
@@ -241,4 +244,68 @@ h1{
 #bar_chart_legend_var_2{
     background-color: #c0392b;
     color: #FFF;
+}
+
+#tree_diagram{
+    margin-top:30px;
+}
+
+.tree_diagram_layer{
+    width:25%;
+    float: left;
+    text-align: center
+}
+
+.gender_group:first-child div:first-child{
+    margin-top: 30px;
+}
+
+
+#tree_diagram_layer_1 div{
+    display: table;
+    margin-top: 45px;
+    margin-left: auto;
+    margin-right:auto;
+    padding: 5px;
+    color: #FFF;
+    width: 50px;
+    border-radius: 30px;
+    transition:0.9s;
+}
+
+#tree_diagram_layer_1 div:nth-child(odd){
+        background: #34495e;
+}
+
+#tree_diagram_layer_1 div:nth-child(even){
+    background: #16a085;
+}
+
+.gender_group:first-child{
+    margin-top:0px;
+}
+
+
+.gender_group{
+    margin-top: 25px;
+}
+
+.gender_group div{
+    display: table;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right:auto;
+    padding: 0px;
+    width: 50px;
+    border-radius: 30px;
+    color:#FFF;
+    transition:0.9s;
+}
+
+.gender_group:nth-child(odd) div {
+    background: #34495e;
+}
+
+.gender_group:nth-child(even) div {
+    background: #16a085;
 }
