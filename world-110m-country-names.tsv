@@ -1,0 +1,175 @@
+id	name	continent
+4	Afghanistan	AS
+8	Albania	EU
+12	Algeria	AF
+24	Angola	AF
+10	Antarctica	AN
+32	Argentina	SA
+51	Armenia	AS
+36	Australia	OC
+40	Austria	EU
+31	Azerbaijan	AS
+44	Bahamas	NA
+50	Bangladesh	AS
+112	Belarus	EU
+56	Belgium	EU
+84	Belize	NA
+204	Benin	AF
+64	Bhutan	AS
+68	"Bolivia, Plurinational State of"	SA
+70	Bosnia and Herzegovina	EU
+72	Botswana	AF
+76	Brazil	SA
+96	Brunei Darussalam	AS
+100	Bulgaria	EU
+854	Burkina Faso	AF
+108	Burundi	AF
+116	Cambodia	AS
+120	Cameroon	AF
+124	Canada	NA
+140	Central African Republic	AF
+148	Chad	AF
+152	Chile	SA
+156	China	AS
+170	Colombia	SA
+178	Congo	AF
+180	"Congo, the Democratic Republic of the"	AF
+188	Costa Rica	NA
+384	Cote d'Ivoire	AF
+191	Croatia	EU
+192	Cuba	NA
+196	Cyprus	AS
+203	Czech Republic	EU
+208	Denmark	EU
+262	Djibouti	AF
+214	Dominican Republic	NA
+218	Ecuador	SA
+818	Egypt	AF
+222	El Salvador	NA
+226	Equatorial Guinea	AF
+232	Eritrea	AF
+233	Estonia	EU
+231	Ethiopia	AF
+238	Falkland Islands (Malvinas)	SA
+242	Fiji	OC
+246	Finland	EU
+250	France	EU
+260	French Southern Territories	AN
+266	Gabon	AF
+270	Gambia	AF
+268	Georgia	AS
+276	Germany	EU
+288	Ghana	AF
+300	Greece	EU
+304	Greenland	NA
+320	Guatemala	NA
+324	Guinea	AF
+624	Guinea-Bissau	AF
+328	Guyana	SA
+332	Haiti	NA
+340	Honduras	NA
+348	Hungary	EU
+352	Iceland	EU
+356	India	AS
+360	Indonesia	AS
+364	"Iran, Islamic Republic of"	AS
+368	Iraq	AS
+372	Ireland	EU
+376	Israel	AS
+380	Italy	EU
+388	Jamaica	NA
+392	Japan	AS
+400	Jordan	AS
+398	Kazakhstan	AS
+404	Kenya	AF
+408	"Korea, Democratic People's Republic of"	AS
+410	"Korea, Republic of"	AS
+414	Kuwait	AS
+417	Kyrgyzstan	AS
+418	Lao People's Democratic Republic	AS
+428	Latvia	EU
+422	Lebanon	AS
+426	Lesotho	AF
+430	Liberia	AF
+434	Libya	AF
+440	Lithuania	EU
+442	Luxembourg	EU
+807	"Macedonia, the former Yugoslav Republic of"	EU
+450	Madagascar	AF
+454	Malawi	AF
+458	Malaysia	AS
+466	Mali	AF
+478	Mauritania	AF
+484	Mexico	NA
+498	"Moldova, Republic of"	EU
+496	Mongolia	AS
+499	Montenegro	EU
+504	Morocco	AF
+508	Mozambique	AF
+104	Myanmar	AS
+516	Namibia	AF
+524	Nepal	AS
+528	Netherlands	EU
+540	New Caledonia	OC
+554	New Zealand	OC
+558	Nicaragua	NA
+562	Niger	AF
+566	Nigeria	AF
+578	Norway	EU
+512	Oman	AS
+586	Pakistan	AS
+275	"Palestinian Territory, Occupied"	AS
+591	Panama	NA
+598	Papua New Guinea	OC
+600	Paraguay	SA
+604	Peru	SA
+608	Philippines	AS
+616	Poland	EU
+620	Portugal	EU
+630	Puerto Rico	NA
+634	Qatar	AS
+642	Romania	EU
+643	Russian Federation	EU
+646	Rwanda	AF
+682	Saudi Arabia	AS
+686	Senegal	AF
+688	Serbia	EU
+694	Sierra Leone	AF
+703	Slovakia	EU
+705	Slovenia	EU
+90	Solomon Islands	OC
+706	Somalia	AF
+710	South Africa	AF
+728	South Sudan	AF
+724	Spain	EU
+144	Sri Lanka	AS
+729	Sudan	AF
+740	Suriname	SA
+748	Swaziland	AF
+752	Sweden	EU
+756	Switzerland	EU
+760	Syrian Arab Republic	AS
+158	"Taiwan, Province of China"	AS
+762	Tajikistan	AS
+834	"Tanzania, United Republic of"	AF
+764	Thailand	AS
+626	Timor-Leste	AS
+768	Togo	AF
+780	Trinidad and Tobago	NA
+788	Tunisia	AF
+792	Turkey	AS
+795	Turkmenistan	AS
+800	Uganda	AF
+804	Ukraine	EU
+784	United Arab Emirates	AS
+826	United Kingdom	EU
+840	United States	NA
+858	Uruguay	SA
+860	Uzbekistan	AS
+548	Vanuatu	OC
+862	"Venezuela, Bolivarian Republic of"	SA
+704	Viet Nam	AS
+732	Western Sahara	AF
+887	Yemen	AS
+894	Zambia	AF
+716	Zimbabwe	AF

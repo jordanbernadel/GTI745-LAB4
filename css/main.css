@@ -109,7 +109,8 @@ h1{
     color:#2ecc71;
 }
 
-.fa-cube:hover{
+.fa-cube:hover,
+.fa-cube.active{
     color:#e74c3c;
 }
 
@@ -309,4 +310,57 @@ h1{
 
 .gender_group:nth-child(even) div {
     background: #16a085;
+}
+
+/* 3d diagram */
+
+#threed_diagram {
+    margin-top:30px;
+    width:100%;
+    height:400px;
+    display:block;
+}
+
+#threed_diagram svg{
+    display:block;
+    margin:0 auto;
+}
+
+#threed_diagram .water {
+    fill: #40a4df;
+}
+
+#threed_diagram .land {
+    fill: #4CBB17;
+    stroke: #FFF;
+    stroke-width: 0.7px;
+}
+
+/*#threed_diagram .land:hover {
+    fill:#5DFC0A;
+    stroke-width: 1px;
+}*/
+
+#threed_diagram .focused {
+    fill: #5DFC0A;
+}
+
+#threed_diagram select {
+    margin-top:20px;
+    border: solid #ccc 1px;
+    padding: 3px;
+    box-shadow: inset 1px 1px 2px #ddd8dc;
+}
+
+#threed_diagram .countryTooltip {
+    position: absolute;
+    display: none;
+    pointer-events: none;
+    background: #fff;
+    padding: 5px;
+    text-align: left;
+    border: solid #ccc 1px;
+    color: #666;
+    font-size: 14px;
+    font-family: sans-serif;
 }

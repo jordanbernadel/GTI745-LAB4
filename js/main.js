@@ -241,17 +241,131 @@ window.main = {
 
 
             // 3D chart
+
+            var globeWidth = 600, globeHeight = 500, sens = 0.25, focused;
+
+            //Setting projection
+
+            var projection = d3.geo.orthographic()
+              .scale(245)
+              .rotate([0, 0])
+              .translate([globeWidth / 2, globeHeight / 2])
+              .clipAngle(90);
+
+            var path = d3.geo.path()
+                .projection(projection);
+
+            var svg = d3.select("#threed_diagram").append("svg")
+              .attr("width", globeWidth)
+              .attr("height", globeHeight);
+
+            svg.append("path")
+              .datum({type: "Sphere"})
+              .attr("class", "water")
+              .attr("d", path);
+
+            var countryTooltip = d3.select("#threed_diagram").append("div").attr("class", "countryTooltip"),
+            countryList = d3.select("#threed_diagram").append("select").attr("name", "countries");
+       
+            queue()
+              .defer(d3.json, "/world-110m.json")
+              .defer(d3.tsv, "/world-110m-country-names.tsv")
+              .await(ready);
+
+            function ready(error, world, countryData) {
+
+                var countryById = {},
+                countries = topojson.feature(world, world.objects.countries).features;
+
+                //Adding countries to select
+
+                countryData.forEach(function(d) {
+                  countryById[d.id] = d.name;
+                  option = countryList.append("option");
+                  option.text(d.name);
+                  option.property("value", d.id);
+                });
+
+                //Drawing countries on the globe
+
+                var world = svg.selectAll("path.land")
+                .data(countries)
+                .enter().append("path")
+                .attr("class", "land")
+                .attr("d", path)
+
+                //Drag event
+
+                .call(d3.behavior.drag()
+                  .origin(function() { var r = projection.rotate(); return {x: r[0] / sens, y: -r[1] / sens}; })
+                  .on("drag", function() {
+                    var rotate = projection.rotate();
+                    projection.rotate([d3.event.x * sens, -d3.event.y * sens, rotate[2]]);
+                    svg.selectAll("path.land").attr("d", path);
+                    svg.selectAll(".focused").classed("focused", focused = false);
+                  }))
+
+                //Mouse events
+
+                .on("mouseover", function(d) {
+                  countryTooltip.text(countryById[d.id])
+                  .style("left", (d3.event.pageX + 7) + "px")
+                  .style("top", (d3.event.pageY - 15) + "px")
+                  .style("display", "block")
+                  .style("opacity", 1);
+                })
+                .on("mouseout", function(d) {
+                  countryTooltip.style("opacity", 0)
+                  .style("display", "none");
+                })
+                .on("mousemove", function(d) {
+                  countryTooltip.style("left", (d3.event.pageX + 7) + "px")
+                  .style("top", (d3.event.pageY - 15) + "px");
+                });
+
+                // Country focus on option select
+
+                d3.select("select").on("change", function() {
+                    var rotate = projection.rotate(),
+                    focusedCountry = country(countries, this),
+                    p = d3.geo.centroid(focusedCountry);
+
+                    svg.selectAll(".focused").classed("focused", focused = false);
+
+                    // Globe rotating
+
+                    (function transition() {
+                        d3.transition()
+                        .duration(2500)
+                        .tween("rotate", function() {
+                            var r = d3.interpolate(projection.rotate(), [-p[0], -p[1]]);
+                            return function(t) {
+                                projection.rotate(r(t));
+                                svg.selectAll("path").attr("d", path)
+                                .classed("focused", function(d, i) { return d.id == focusedCountry.id ? focused = d : false; });
+                            };
+                        })
+                    })();
+                });
+
+                function country(cnt, sel) { 
+                    for(var i = 0, l = cnt.length; i < l; i++) {
+                        if(cnt[i].id == sel.value) {return cnt[i];}
+                    }
+                };
+
+            };
         });
     },
 
     showBarChart : function(){
         if($("#bar_chart_content").css("opacity") == 0){
             $("#bar_chart_content").css("display","inherit");
-            $("#bar_chart_content").animate({opacity: 1}, 500);
+            $("#bar_chart_content").stop().animate({opacity: 1}, 500);
             $(".fa-bar-chart").addClass("active");
             $("#bar_chart .bar").removeClass('init');
         }else{
-            $("#bar_chart_content").animate({opacity: 0}, 500, function(){
+            $("#bar_chart_content").stop().animate({opacity: 0}, 500, function(){
                 $("#bar_chart_content").css("display","none");
             });
             $(".fa-bar-chart").removeClass("active");
@@ -263,10 +377,10 @@ window.main = {
     showTreeDiagram : function(){
         if($("#tree_diagram_content").css("opacity") == 0){
             $("#tree_diagram_content").css("display","inherit");
-            $("#tree_diagram_content").animate({opacity: 1}, 500);
+            $("#tree_diagram_content").stop().animate({opacity: 1}, 500);
             $(".fa-tree").addClass("active");
         }else{
-            $("#tree_diagram_content").animate({opacity: 0}, 500, function(){
+            $("#tree_diagram_content").stop().animate({opacity: 0}, 500, function(){
                 $("#tree_diagram_content").css("display","none");
             });
             $(".fa-tree").removeClass("active");
@@ -275,13 +389,13 @@ window.main = {
     },
 
     show3dDiagram : function(){
-        if($("#3d_diagram_content").css("opacity") == 0){            
-            $("#3d_diagram_content").css("display","inherit");
-            $("#3d_diagram_content").animate({opacity: 1}, 500);
+        if($("#threed_diagram_content").css("opacity") == 0){            
+            $("#threed_diagram_content").css("display","inherit");
+            $("#threed_diagram_content").stop().animate({opacity: 1}, 500);
             $(".fa-cube").addClass("active");
         }else{
-            $("#3d_diagram_content").animate({opacity: 0}, 500, function(){
-                $("#tree_diagram_content").css("display","none");
+            $("#threed_diagram_content").stop().animate({opacity: 0}, 500, function(){
+                $("#threed_diagram_content").css("display","none");
             });
             $(".fa-cube").removeClass("active");
         }
