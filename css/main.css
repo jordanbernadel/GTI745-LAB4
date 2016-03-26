@@ -304,17 +304,10 @@ h1{
     margin-right:auto;
     padding: 5px;
     color: #FFF;
+    background: #34495e;
     width: 50px;
     border-radius: 30px;
     transition:0.9s;
-}
-
-#tree_diagram_layer_1 div:nth-child(odd){
-        background: #34495e;
-}
-
-#tree_diagram_layer_1 div:nth-child(even){
-    background: #16a085;
 }
 
 .gender_group:first-child{
@@ -335,15 +328,8 @@ h1{
     width: 50px;
     border-radius: 30px;
     color:#FFF;
-    transition:0.9s;
-}
-
-.gender_group:nth-child(odd) div {
     background: #34495e;
-}
-
-.gender_group:nth-child(even) div {
-    background: #16a085;
+    transition:0.9s;
 }
 
 /* 3d diagram */

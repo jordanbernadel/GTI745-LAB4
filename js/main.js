@@ -217,7 +217,7 @@ window.main = {
                 .data(continent_array)
                 .enter()
                 .append("div")
-                .attr("class", "bar male init")
+                .attr("class", function(d){ return d.toLowerCase()+" bar male init"; })
                 .on("mouseenter", main.showBarChartInfo)
                 .on("mouseleave", main.hideBarChartInfo)
                 .attr("style",function(d, i){ return "height:"+continent_male_count[i]*2+"px";})
@@ -228,7 +228,7 @@ window.main = {
                 .data(continent_array)
                 .enter()
                 .append("div")
-                .attr("class", "bar female init")
+                .attr("class", function(d){ return d.toLowerCase()+" bar female init"; })
                 .on("mouseenter", main.showBarChartInfo)
                 .on("mouseleave", main.hideBarChartInfo)
                 .attr("style",function(d, i){ return "height:"+continent_female_count[i]*2+"px";})
@@ -255,6 +255,7 @@ window.main = {
                 .data(continent_array)
                 .enter()
                 .append("div")
+                .attr("class", function(d){ return d.toLowerCase(); })
                 .html(function(d){ return d;});
 
             var tree_diagram_layer_2_data = tree_diagram_layer_2.selectAll("div")
@@ -262,21 +263,22 @@ window.main = {
                 .enter()
                 .append("div")
                 .attr("class", "gender_group")
-                .html(function(d){ return "<div>H</div><div>F</div>";});
+                .attr("class", function(d){ return d.toLowerCase()+" gender_group"; })
+                .html(function(d){ return "<div class='male'>H</div><div class='female'>F</div>";});
 
             var tree_diagram_layer_3_data = tree_diagram_layer_3.selectAll("div")
                 .data(continent_array)
                 .enter()
                 .append("div")
-                .attr("class", "gender_group")
-                .html(function(d, i){ return "<div>"+continent_male_count[i]+"</div><div>"+continent_female_count[i]+"</div>";});
+                .attr("class", function(d){ return d.toLowerCase()+" gender_group"; })
+                .html(function(d, i){ return "<div class='male'>"+continent_male_count[i]+"</div><div class='female'>"+continent_female_count[i]+"</div>";});
 
                 var tree_diagram_layer_4_data = tree_diagram_layer_4.selectAll("div")
                 .data(continent_array)
                 .enter()
                 .append("div")
-                .attr("class", "gender_group")
-                .html(function(d, i){ return "<div>"+getFavoriteTransportForContinentByGender(i, "M")+"</div><div>"+getFavoriteTransportForContinentByGender(i, "F")+"</div>";});
+                .attr("class", function(d){ return d.toLowerCase()+" gender_group"; })
+                .html(function(d, i){ return "<div class='male'>"+getFavoriteTransportForContinentByGender(i, "M")+"</div><div class='female'>"+getFavoriteTransportForContinentByGender(i, "F")+"</div>";});
 
 
             // 3D chart
@@ -452,12 +454,152 @@ window.main = {
         $(this).children().css("opacity", 1);
         $(this).children().css("font-size", 60);
         $(this).children().css("margin-top", -150);
+
+        if($(this).hasClass("male") && $(this).hasClass("af")){
+            $("#tree_diagram #tree_diagram_layer_1 .af").css("background-color", "#3498db");
+            $("#tree_diagram .af .male").css("background-color", "#3498db");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("oc")){
+            $("#tree_diagram #tree_diagram_layer_1 .oc").css("background-color", "#3498db");
+            $("#tree_diagram .oc .male").css("background-color", "#3498db");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("an")){
+            $("#tree_diagram #tree_diagram_layer_1 .an").css("background-color", "#3498db");
+            $("#tree_diagram .an .male").css("background-color", "#3498db");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("as")){
+            $("#tree_diagram #tree_diagram_layer_1 .as").css("background-color", "#3498db");
+            $("#tree_diagram .as .male").css("background-color", "#3498db");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("na")){
+            $("#tree_diagram #tree_diagram_layer_1 .na").css("background-color", "#3498db");
+            $("#tree_diagram .na .male").css("background-color", "#3498db");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("sa")){
+            $("#tree_diagram #tree_diagram_layer_1 .sa").css("background-color", "#3498db");
+            $("#tree_diagram .sa .male").css("background-color", "#3498db");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("eu")){
+            $("#tree_diagram #tree_diagram_layer_1 .eu").css("background-color", "#3498db");
+            $("#tree_diagram .eu .male").css("background-color", "#3498db");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("af")){
+            $("#tree_diagram #tree_diagram_layer_1 .af").css("background-color", "#e74c3c");
+            $("#tree_diagram .af .female").css("background-color", "#e74c3c");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("oc")){
+            $("#tree_diagram #tree_diagram_layer_1 .oc").css("background-color", "#e74c3c");
+            $("#tree_diagram .oc .female").css("background-color", "#e74c3c");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("an")){
+            $("#tree_diagram #tree_diagram_layer_1 .an").css("background-color", "#e74c3c");
+            $("#tree_diagram .an .female").css("background-color", "#e74c3c");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("as")){
+            $("#tree_diagram #tree_diagram_layer_1 .as").css("background-color", "#e74c3c");
+            $("#tree_diagram .as .female").css("background-color", "#e74c3c");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("na")){
+            $("#tree_diagram #tree_diagram_layer_1 .na").css("background-color", "#e74c3c");
+            $("#tree_diagram .na .female").css("background-color", "#e74c3c");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("sa")){
+            $("#tree_diagram #tree_diagram_layer_1 .sa").css("background-color", "#e74c3c");
+            $("#tree_diagram .sa .female").css("background-color", "#e74c3c");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("eu")){
+            $("#tree_diagram #tree_diagram_layer_1 .eu").css("background-color", "#e74c3c");
+            $("#tree_diagram .eu .female").css("background-color", "#e74c3c");
+        }
     },
 
     hideBarChartInfo : function(){
         $(this).children().css("opacity", 0);
         $(this).children().css("font-size", 10);
         $(this).children().css("margin-top", 10);
+
+        if($(this).hasClass("male") && $(this).hasClass("af")){
+            $("#tree_diagram #tree_diagram_layer_1 .af").css("background-color", "#34495e");
+            $("#tree_diagram .af .male").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("oc")){
+            $("#tree_diagram #tree_diagram_layer_1 .oc").css("background-color", "#34495e");
+            $("#tree_diagram .oc .male").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("an")){
+            $("#tree_diagram #tree_diagram_layer_1 .an").css("background-color", "#34495e");
+            $("#tree_diagram .an .male").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("as")){
+            $("#tree_diagram #tree_diagram_layer_1 .as").css("background-color", "#34495e");
+            $("#tree_diagram .as .male").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("na")){
+            $("#tree_diagram #tree_diagram_layer_1 .na").css("background-color", "#34495e");
+            $("#tree_diagram .na .male").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("sa")){
+            $("#tree_diagram #tree_diagram_layer_1 .sa").css("background-color", "#34495e");
+            $("#tree_diagram .sa .male").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("male") && $(this).hasClass("eu")){
+            $("#tree_diagram #tree_diagram_layer_1 .eu").css("background-color", "#34495e");
+            $("#tree_diagram .eu .male").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("af")){
+            $("#tree_diagram #tree_diagram_layer_1 .af").css("background-color", "#34495e");
+            $("#tree_diagram .af .female").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("oc")){
+            $("#tree_diagram #tree_diagram_layer_1 .oc").css("background-color", "#34495e");
+            $("#tree_diagram .oc .female").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("an")){
+            $("#tree_diagram #tree_diagram_layer_1 .an").css("background-color", "#34495e");
+            $("#tree_diagram .an .female").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("as")){
+            $("#tree_diagram #tree_diagram_layer_1 .as").css("background-color", "#34495e");
+            $("#tree_diagram .as .female").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("na")){
+            $("#tree_diagram #tree_diagram_layer_1 .na").css("background-color", "#34495e");
+            $("#tree_diagram .na .female").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("sa")){
+            $("#tree_diagram #tree_diagram_layer_1 .sa").css("background-color", "#34495e");
+            $("#tree_diagram .sa .female").css("background-color", "#34495e");
+        }
+
+        if($(this).hasClass("female") && $(this).hasClass("eu")){
+            $("#tree_diagram #tree_diagram_layer_1 .eu").css("background-color", "#34495e");
+            $("#tree_diagram .eu .female").css("background-color", "#34495e");
+        }
     },
 
     adapt_bar_chart : function(){
