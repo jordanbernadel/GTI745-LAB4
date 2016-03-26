@@ -16,7 +16,26 @@ window.main = {
         $("#modal_title").html(label+" content");
         $(".tools").removeClass("hide").css("opacity", 1);
 
+        // Aggregation data
+        var sommeFemme = 0;
+        var sommeHomme = 0;
+        var totalBieres = 0;
+        var totalCafe = 0;
+        var numTransport = {Voiture:0, Bateau:0, Avion:0, Train:0, Velo:0, Metro:0};
+        var numPaiement = {PayPal:0, Comptant:0, Credit:0};
+
         d3.csv(label, function(data) {
+
+            // Aggregation data
+            var totalLines = 0;
+            var totalAge = 0;
+            var totalCafe = 0;
+            var totalBieres = 0;
+            var numSexe = {M: 0, F: 0};
+            var numContinent = {NA: 0, SA: 0, EU: 0, AF: 0, AS: 0, OC: 0, AN: 0};
+            var numTransport = {Voiture:0, Bateau:0, Avion:0, Train:0, Velo:0, Metro:0};
+            var numPaiement = {PayPal:0, Comptant:0, Credit:0};
+
             dataset = data.map(function(d) { return [   +d["id"], 
                                                         d["Sexe"],
                                                         +d["Age"],
@@ -44,6 +63,17 @@ window.main = {
                         transport_favori    = d[6],
                         paiement_favori     = d[7];
 
+                    // Gestion des aggregation data
+
+                    totalLines++;
+                    totalAge += parseInt(age);
+                    totalCafe += parseInt(nb_cafe_semaine);
+                    totalBieres += parseInt(nb_biere_semaine);
+                    numSexe[sexe]++;
+                    numContinent[continent]++;
+                    numTransport[transport_favori]++;
+                    numPaiement[paiement_favori]++;
+
                     var line =  "<div class='col-md-1 center'>"+id+"</div> " +
                                 "<div class='col-md-1 center'>"+sexe+"</div> " +
                                 "<div class='col-md-1 center'>"+age+"</div> " +
@@ -55,6 +85,15 @@ window.main = {
                     return line; 
                 });
             $("#file_container.btn-success").bind("click", main.showData);
+
+            // Set aggregation data
+            main.addAggregationData("Moyenne d'age", totalAge/totalLines);
+            main.addAggregationData("Moyenne de cafés par semaine", totalCafe/totalLines);
+            main.addAggregationData("Moyenne de bières par semaine", totalBieres/totalLines);
+            main.addAggregationData("Pourcentage d'hommes", numSexe["M"]/totalLines*100, true);
+            main.addAggregationData("Pourcentage de personnes habitant en Europe", numContinent["EU"]/totalLines*100, true);
+            main.addAggregationData("Pourcentage de personnes utilisant le métro", numTransport["Metro"]/totalLines*100, true);
+            main.addAggregationData("Pourcentage de personnes utilisant PayPal", numPaiement["PayPal"]/totalLines*100, true);
 
             // Bar chart
 
@@ -445,6 +484,21 @@ window.main = {
             left_female_counter += gap;
         });
     },
+
+    addAggregationData : function(title, value, isPercentage) {
+
+        if(isPercentage) {
+            value = value.toFixed(2) + "%";
+        }
+
+        var html = "";
+        html += '<div class="aggregation_data_line">';
+        html += '<span class="aggregation_data_line_title">'+title+': </span>';
+        html += '<span class="aggregation_data_line_value">'+value+'</span>';
+        html += '</div>';
+
+        $("#aggregation_data").append(html);
+    }
 };
 
 $(window).on('resize', main.adapt_bar_chart);

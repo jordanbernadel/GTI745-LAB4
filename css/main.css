@@ -144,6 +144,40 @@ h1{
     transition:0.9s;
 }
 
+/* Aggregation data */
+
+#aggregation_data_title {
+    margin-top:15px;
+    text-align:center;
+    font-size:16px;
+    font-weight:bold;
+    width:100%;
+}
+
+#aggregation_data {
+    margin-top:10px;
+    margin-bottom:15px;
+    width:100%;
+    padding-top:10px;
+    padding-bottom:10px;
+    border-top:1px solid black;
+    border-bottom:1px solid black;
+}
+
+.aggregation_data_line {
+    margin-top:5px;
+    margin-bottom:5px;
+    width:100%;
+}
+
+.aggregation_data_line .aggregation_data_line_title {
+    font-weight:bold;
+}
+
+.aggregation_data_line .aggregation_data_line_value {
+
+}
+
 /* Bar diagram */
 
 #bar_chart{
