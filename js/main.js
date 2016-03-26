@@ -265,7 +265,7 @@ window.main = {
               .attr("d", path);
 
             var countryTooltip = d3.select("#threed_diagram").append("div").attr("class", "countryTooltip"),
-            countryList = d3.select("#threed_diagram").append("select").attr("name", "countries");
+            countryList = d3.select("#threed_diagram_select").append("select").attr("name", "countries");
        
             queue()
               .defer(d3.json, "/world-110m.json")
@@ -274,13 +274,15 @@ window.main = {
 
             function ready(error, world, countryData) {
 
-                var countryById = {},
+                var countryById = {}, continentById = {}, habitants = { NA: 0, SA: 0, AF: 0, AS: 0, OC: 0, AN: 0, EU: 0 },
                 countries = topojson.feature(world, world.objects.countries).features;
 
                 //Adding countries to select
 
                 countryData.forEach(function(d) {
                   countryById[d.id] = d.name;
+                  continentById[d.id] = d.continent;
+                  habitants[d.continent]++;
                   option = countryList.append("option");
                   option.text(d.name);
                   option.property("value", d.id);
@@ -308,7 +310,7 @@ window.main = {
                 //Mouse events
 
                 .on("mouseover", function(d) {
-                  countryTooltip.text(countryById[d.id])
+                  countryTooltip.text("Habitants in " + continentById[d.id] + ": " + habitants[continentById[d.id]])
                   .style("left", (d3.event.pageX + 7) + "px")
                   .style("top", (d3.event.pageY - 15) + "px")
                   .style("display", "block")
