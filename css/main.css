@@ -118,7 +118,8 @@ h1{
     color:#f1c40f;
 }
 
-.fa-bars:hover{
+.fa-bars:hover,
+.fa-bars.active{
     color:#9b59b6;
 }
 
@@ -337,7 +338,7 @@ h1{
 #threed_diagram {
     margin-top:30px;
     width:100%;
-    height:400px;
+    height:500px;
     display:block;
 }
 
@@ -388,4 +389,48 @@ h1{
     color: #666;
     font-size: 14px;
     font-family: sans-serif;
+}
+
+/* parallel coords */
+
+#parallelcords_diagram {
+    margin-top:30px;
+    width:100%;
+    height:400px;
+    display:block;
+}
+
+#parallelcords_diagram svg {
+    font: 10px sans-serif;
+    display:block;
+    margin:0 auto;
+}
+
+#parallelcords_diagram .background path {
+    fill: none;
+    stroke: #ddd;
+    shape-rendering: crispEdges;
+}
+
+#parallelcords_diagram .foreground path {
+    fill: none;
+    stroke: black;
+}
+
+#parallelcords_diagram .brush .extent {
+    fill-opacity: .3;
+    stroke: #fff;
+    shape-rendering: crispEdges;
+}
+
+#parallelcords_diagram .axis line,
+#parallelcords_diagram .axis path {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+#parallelcords_diagram .axis text {
+    text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
+    cursor: move;
 }
