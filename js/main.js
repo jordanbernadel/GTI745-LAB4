@@ -315,16 +315,17 @@ window.main = {
 
             function ready(error, world, countryData) {
 
-                var countryById = {}, continentById = {}, habitants = { NA: 0, SA: 0, AF: 0, AS: 0, OC: 0, AN: 0, EU: 0 }, 
+                var countryById = {}, continentById = {}, 
                 dictContinents = { NA: 'North America', SA: 'South America', AF: 'Africa', AS: 'Asia', OC: "Oceania", AN: 'Antartica', EU: 'Europe'}
                 countries = topojson.feature(world, world.objects.countries).features;
 
                 //Adding countries to select
 
+                alert(data.length);
+
                 countryData.forEach(function(d) {
                   countryById[d.id] = d.name;
                   continentById[d.id] = d.continent;
-                  habitants[d.continent]++;
                   option = countryList.append("option");
                   option.text(d.name);
                   option.property("value", d.id);
@@ -352,7 +353,7 @@ window.main = {
                 //Mouse events
 
                 .on("mouseover", function(d) {
-                  countryTooltip.text("Habitants in " + dictContinents[continentById[d.id]] + ": " + habitants[continentById[d.id]])
+                  countryTooltip.text("Habitants in " + dictContinents[continentById[d.id]] + ": " + numContinent[continentById[d.id]])
                   .style("left", (d3.event.pageX + 7) + "px")
                   .style("top", (d3.event.pageY - 15) + "px")
                   .style("display", "block")
