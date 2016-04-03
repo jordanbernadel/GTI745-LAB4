@@ -4,6 +4,7 @@ window.main = {
         $(".fa-bar-chart").bind("click", this.showBarChart);
         $(".fa-tree").bind("click", this.showTreeDiagram);
         $(".fa-cube").bind("click", this.show3dDiagram);
+        $(".fa-smile-o").bind("click", this.showGlyphDiagram);
         $(".fa-bars").bind("click", this.showParallelCordsDiagram);
     },
 
@@ -111,6 +112,13 @@ window.main = {
             var continent_male_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
             var continent_female_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
 
+            var continent_voiture_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_train_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_plane_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_bike_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_subway_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+            var continent_boat_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
+
             var continent_male_voiture_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
             var continent_male_train_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
             var continent_male_plane_count = Array.apply(null, Array(continent_array.length)).map(Number.prototype.valueOf,0);
@@ -161,6 +169,15 @@ window.main = {
                         }
                     }
                 }
+            }
+
+            for(var i = 0; i < continent_array.length; i++){
+                continent_voiture_count[i] = continent_male_voiture_count[i] + continent_female_voiture_count[i];
+                continent_train_count[i] = continent_male_train_count[i] + continent_female_train_count[i];
+                continent_plane_count[i] = continent_male_plane_count[i] + continent_female_plane_count[i];
+                continent_bike_count[i] = continent_male_bike_count[i] + continent_female_bike_count[i];
+                continent_subway_count[i] = continent_male_subway_count[i] + continent_female_subway_count[i];
+                continent_boat_count[i] = continent_male_boat_count[i] + continent_female_boat_count[i];
             }
 
             function getFavoriteTransportForContinentByGender(i, gender){
@@ -275,13 +292,30 @@ window.main = {
                 .attr("class", function(d){ return d.toLowerCase()+" gender_group"; })
                 .html(function(d, i){ return "<div class='male'>"+continent_male_count[i]+"</div><div class='female'>"+continent_female_count[i]+"</div>";});
 
-                var tree_diagram_layer_4_data = tree_diagram_layer_4.selectAll("div")
+            var tree_diagram_layer_4_data = tree_diagram_layer_4.selectAll("div")
                 .data(continent_array)
                 .enter()
                 .append("div")
                 .attr("class", function(d){ return d.toLowerCase()+" gender_group"; })
                 .html(function(d, i){ return "<div class='male'>"+getFavoriteTransportForContinentByGender(i, "M")+"</div><div class='female'>"+getFavoriteTransportForContinentByGender(i, "F")+"</div>";});
 
+            // glyph diagram
+            var glyph_diagram = d3.select("#glyph_diagram");
+
+            var glyph_diagram_content = glyph_diagram.selectAll("div")
+                .data(continent_array)
+                .enter()
+                .append("div")
+                .attr("class", "row")
+                .html(function(d, i){ 
+                    var content =   "<div class='col-md-2 center'><i class='fa fa-car' style='font-size:"+continent_voiture_count[i]*2+"px;'><span>"+continent_voiture_count[i]+"</span></i></div>"+
+                                    "<div class='col-md-2 center'><i class='fa fa-train' style='font-size:"+continent_train_count[i]*2+"px;'><span>"+continent_train_count[i]+"</span></i></div>"+
+                                    "<div class='col-md-2 center'><i class='fa fa-plane' style='font-size:"+continent_plane_count[i]*2+"px;'><span>"+continent_plane_count[i]+"</span></i></div>"+
+                                    "<div class='col-md-2 center'><i class='fa fa-subway' style='font-size:"+continent_bike_count[i]*2+"px;'><span>"+continent_bike_count[i]+"</span></i></div>"+
+                                    "<div class='col-md-2 center'><i class='fa fa-bicycle' style='font-size:"+continent_subway_count[i]*2+"px;'><span>"+continent_subway_count[i]+"</span></i></div>"+
+                                    "<div class='col-md-2 center'><i class='fa fa-ship' style='font-size:"+continent_boat_count[i]*2+"px;'><span>"+continent_boat_count[i]+"</span></i></div>";
+                    return content; 
+                });
 
             // 3D chart
 
@@ -572,6 +606,20 @@ window.main = {
                 $("#threed_diagram_content").css("display","none");
             });
             $(".fa-cube").removeClass("active");
+        }
+        
+    },
+
+    showGlyphDiagram : function(){
+        if($("#glyph_diagram_content").css("opacity") == 0){
+            $("#glyph_diagram_content").css("display","inherit");
+            $("#glyph_diagram_content").stop().animate({opacity: 1}, 500);
+            $(".fa-smile-o").addClass("active");
+        }else{
+            $("#glyph_diagram_content").stop().animate({opacity: 0}, 500, function(){
+                $("#glyph_content").css("display","none");
+            });
+            $(".fa-smile-o").removeClass("active");
         }
         
     },

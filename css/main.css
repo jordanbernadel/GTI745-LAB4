@@ -114,7 +114,8 @@ h1{
     color:#e74c3c;
 }
 
-.fa-smile-o:hover{
+.fa-smile-o:hover,
+.fa-smile-o.active{
     color:#f1c40f;
 }
 
@@ -434,4 +435,104 @@ h1{
 #parallelcords_diagram .axis text {
     text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, 0 -1px 0 #fff, -1px 0 0 #fff;
     cursor: move;
+}
+
+/* glyph diagram */
+#glyph_diagram{
+    margin-top: 30px;
+}
+
+#glyph_diagram .row{
+    background: #F7F7F7;
+    border: 1px solid #FFF;
+}
+
+#glyph_diagram .row .col-md-2{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+#glyph_diagram .row .col-md-2 .fa{
+    cursor: pointer;
+}
+
+#glyph_diagram .row .col-md-2 .fa span{
+    opacity: 0;
+    transition:0.9s;
+}
+
+#glyph_diagram .row .col-md-2 .fa:hover span{
+    opacity: 1;
+    margin-left: 15px;
+}
+
+#glyph_diagram .row:first-child .col-md-2 .fa{
+    color: #1abc9c;
+}
+
+#glyph_diagram .row:first-child::before,
+#glyph_diagram .row:nth-child(2)::before,
+#glyph_diagram .row:nth-child(3)::before,
+#glyph_diagram .row:nth-child(4)::before,
+#glyph_diagram .row:nth-child(5)::before,
+#glyph_diagram .row:nth-child(6)::before,
+#glyph_diagram .row:nth-child(7)::before { 
+    padding: 15px;
+    background: #D8D8D8;
+    position: absolute;
+    border-bottom-right-radius: 15px;
+    color: #A0A0A0;
+    font-size: 18px;
+}
+
+#glyph_diagram .row:first-child::before { 
+    content: "AF";
+}
+
+#glyph_diagram .row:nth-child(2)::before { 
+    content: "OC";
+}
+
+#glyph_diagram .row:nth-child(3)::before { 
+    content: "AN";
+}
+
+#glyph_diagram .row:nth-child(4)::before { 
+    content: "AS";
+}
+
+#glyph_diagram .row:nth-child(5)::before { 
+    content: "NA";
+}
+
+#glyph_diagram .row:nth-child(6)::before { 
+    content: "SA";
+}
+
+#glyph_diagram .row:nth-child(7)::before { 
+    content: "EU";
+}
+
+#glyph_diagram .row:nth-child(2) .col-md-2 .fa{
+    color: #9b59b6;
+}
+
+#glyph_diagram .row:nth-child(3) .col-md-2 .fa{
+    color: #e74c3c;
+}
+
+#glyph_diagram .row:nth-child(4) .col-md-2 .fa{
+    color: #47a1de;
+}
+
+#glyph_diagram .row:nth-child(5) .col-md-2 .fa{
+    color: #f39c12;
+}
+
+#glyph_diagram .row:nth-child(6) .col-md-2 .fa{
+    color: #2ecc71;
+}
+
+#glyph_diagram .row:nth-child(7) .col-md-2 .fa{
+    color: #34495e;
 }
