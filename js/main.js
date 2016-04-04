@@ -264,6 +264,23 @@ window.main = {
                 .append("div")
                 .html(function(d){ return d;});
 
+            var bar_y_axis = d3.select("#bar_chart_y_axis_grad");
+
+            var max_y_axis = Array.apply(null, Array(15)).map(Number.prototype.valueOf,0);
+
+            var max = 150;
+
+            for(var i = 0; i < 16; i++){
+                max_y_axis[i] = max;
+                max -=10;
+            }
+
+            var y_axis_domain = bar_y_axis.selectAll("div")
+                .data(max_y_axis)
+                .enter()
+                .append("div")
+                .html(function(d, i){ return max_y_axis[i];});
+
             // tree diagram
             var tree_diagram_layer_1 = d3.select("#tree_diagram_layer_1");
             var tree_diagram_layer_2 = d3.select("#tree_diagram_layer_2");

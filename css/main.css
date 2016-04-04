@@ -248,6 +248,16 @@ h1{
     padding: 10px;
 }
 
+#bar_chart_y_axis_grad{
+    top: 305px;
+    position: absolute;
+    padding: 10px;
+    text-align: center;
+    margin-left: -20px;
+    color: black;
+    letter-spacing: 2px;
+}
+
 #bar_chart_x_axis div:first-child{
     padding-left: 0px;
 }
@@ -459,6 +469,7 @@ h1{
 #glyph_diagram .row .col-md-2 .fa span{
     opacity: 0;
     transition:0.9s;
+    position: absolute;
 }
 
 #glyph_diagram .row .col-md-2 .fa:hover span{
